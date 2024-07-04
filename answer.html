@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="images/tab-logo.png" />
+    <link rel="stylesheet" href="./answer.css" />
+    <title>Answer-Key</title>
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="./index.html">UTS</a>
+      <nav class="menu-content">
+        <a href="./index.html">Home</a>
+        <a href="./index.html#about-link">About</a>
+        <a href="index.html#chapters">Chapter</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </header>
+    <div id="root">
+      <div id="card-container" class="card-container">
+        <!-- Cards will be dynamically inserted here -->
+      </div>
+    </div>
+
+    <script>
+      const cardContainer = document.querySelector("#card-container");
+
+      let htmlElement = ``;
+
+      const imageSources = [
+        "answer-key/1.png",
+        "answer-key/2.png",
+        "answer-key/3.png",
+        "answer-key/4.png",
+        "answer-key/5.png",
+        "answer-key/6.png",
+        "answer-key/7.png",
+        "answer-key/8.png",
+        "answer-key/9.png",
+        "answer-key/10.png",
+        "answer-key/11.png",
+        "answer-key/12.png",
+        "answer-key/13.png",
+        "answer-key/14.png",
+      ];
+
+      for (let i = 0; i < imageSources.length; i++) {
+        const card = `
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h2>Chapter- ${i + 1}</h2>
+              <p>Hover to see answers</p>
+            </div>
+            <div class="flip-card-back">
+              <img src="${imageSources[i]}" alt="answer key" />
+            </div>
+          </div>
+        </div>
+      `;
+
+        htmlElement += card;
+      }
+
+      cardContainer.innerHTML = htmlElement;
+    </script>
+    <script>
+      const chapters = [
+        {
+          id: "chapter-1",
+          title: "Chapter 1",
+          content: "Content for Chapter 1",
+        },
+        {
+          id: "chapter-2",
+          title: "Chapter 2",
+          content: "Content for Chapter 2",
+        },
+      ];
+
+      window.addEventListener("DOMContentLoaded", (event) => {
+        const hash = window.location.hash;
+
+        chapters.forEach((chapter) => {
+          const chapterElement = document.getElementById(chapter.id);
+          if (chapterElement) {
+            chapterElement.innerHTML = `
+                        <h2>${chapter.title}</h2>
+                        <p>${chapter.content}</p>
+                    `;
+          }
+        });
+
+        if (hash) {
+          setTimeout(() => {
+            const target = document.querySelector(hash);
+            if (target) {
+              target.scrollIntoView({ behavior: "smooth" });
+            }
+          }, 100);
+        }
+      });
+    </script>
+  </body>
+</html>
